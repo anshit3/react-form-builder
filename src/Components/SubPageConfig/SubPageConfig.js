@@ -8,15 +8,27 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import FileCopyIcon from '@material-ui/icons/FileCopy';
 import { Typography } from '@material-ui/core';
+import Paper from '@material-ui/core/Paper';
+import EditIcon from '@material-ui/icons/Edit';
+import Button from '@material-ui/core/Button';
+import Editor from './Editor/Editor'
 import './SubPageConfig.css';
 
-const drawerWidth = 250;
+const drawerWidth = 200;
 
 const useStyles = makeStyles((theme) => ({
+  root: {
+    '& > *': {
+      height: 500,
+      marginTop: 10,
+      marginRight: 20,
+      marginLeft: 220,
+    },
+  },
   drawerPaper: {
     width: drawerWidth,
     marginTop: 64,
-    padding: 0
+    padding: 0,
   },
 }));
 
@@ -24,7 +36,7 @@ const SubPageConfig = () => {
   const classes = useStyles();
 
   return (
-    <div className={classes.root}>
+    <div>
       <Drawer
         variant="permanent"
         classes={{
@@ -39,19 +51,23 @@ const SubPageConfig = () => {
                   <FileCopyIcon />
                 </ListItemIcon>
                 <ListItemText primary={text} />
+                <EditIcon />
               </ListItem>
             ))}
           </List>
           <Divider />
-         <div className="moto-text">
-             <p>
-                 <Typography>
-                    Page Editor
-                 </Typography>
-             </p>
-         </div>
+          <div className="moto-text">
+            <Button variant="contained" color="primary">
+              Preview
+            </Button>
+          </div>
         </div>
       </Drawer>
+      <div className={classes.root}>
+        <Paper elevation={3}>
+          <Editor></Editor>
+        </Paper>
+      </div>
     </div>
   );
 };

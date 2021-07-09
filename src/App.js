@@ -8,7 +8,7 @@ const App = () => {
   return (
     <>
       <Header />
-      <PageConfig ></PageConfig>
+      {/* <PageConfig ></PageConfig> */}
       <SubPageConfig></SubPageConfig>
     </>
   );
