@@ -1,7 +1,15 @@
+import { hot } from 'react-hot-loader/root';
 import React from 'react';
+import Header from './Components/Header/Header';
+import PageConfig from './Components/PageConfig/PageConfig';
 
 const App = () => {
-  return <h1>Hello Webpack React</h1>;
+  return (
+    <>
+      <Header />
+      <PageConfig ></PageConfig>
+    </>
+  );
 };
 
-export default App;
+export default hot(App);
