@@ -7,7 +7,6 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import FileCopyIcon from '@material-ui/icons/FileCopy';
-import { Typography } from '@material-ui/core';
 import Paper from '@material-ui/core/Paper';
 import EditIcon from '@material-ui/icons/Edit';
 import Button from '@material-ui/core/Button';
