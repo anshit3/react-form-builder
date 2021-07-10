@@ -59,7 +59,7 @@ const Editor = () => {
           variant="contained"
           color="primary"
         >
-          Save Config
+          Save & Preview
         </Button>
       </div>
     </div>

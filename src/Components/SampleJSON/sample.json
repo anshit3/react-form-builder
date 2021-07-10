@@ -15,26 +15,25 @@
       },
       "pageFilelds": [
         {
-          "headlineText": "Save your spot",
-          "type": "headline"
-        },
-        {
           "label": "Name",
           "placeholderText": "Name",
           "type": "inputText",
-          "isRequired": true
+          "isRequired": true,
+          "default": true
         },
         {
           "label": "Email",
           "placeholderText": "Email",
           "type": "email",
-          "isRequired": true
+          "isRequired": true,
+          "default": true
         },
         {
           "label": "Contact Number",
           "placeholderText": "Contact Number",
           "type": "tel",
-          "isRequired": true
+          "isRequired": true,
+          "default": true
         }
       ]
     }

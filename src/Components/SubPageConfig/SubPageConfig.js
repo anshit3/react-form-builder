@@ -10,7 +10,7 @@ import FileCopyIcon from '@material-ui/icons/FileCopy';
 import Paper from '@material-ui/core/Paper';
 import EditIcon from '@material-ui/icons/Edit';
 import Button from '@material-ui/core/Button';
-import Editor from './Editor/Editor'
+import Editor from './Editor/Editor';
 import './SubPageConfig.css';
 
 const drawerWidth = 200;
@@ -54,12 +54,6 @@ const SubPageConfig = () => {
               </ListItem>
             ))}
           </List>
-          <Divider />
-          <div className="moto-text">
-            <Button variant="contained" color="primary">
-              Preview
-            </Button>
-          </div>
         </div>
       </Drawer>
       <div className={classes.root}>
