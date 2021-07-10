@@ -1,6 +1,6 @@
 .main-container {
   width: 50%;
-  height: 400px;
+  height: 450px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -9,7 +9,11 @@
   margin-bottom: 16px;
   padding: 10px;
   border-radius: 39px;
-  border: #6e82e5 1px solid;
+  border: #e2e2e2 1px solid;
+}
+
+.main-header {
+  margin-top: 18px;
 }
 
 .config-container {
