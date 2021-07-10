@@ -4,6 +4,7 @@ import Button from '@material-ui/core/Button';
 import Icon from '@material-ui/core/Icon';
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 import EditIcon from '@material-ui/icons/Edit';
+import { Link } from 'react-router-dom';
 import './Editor.css';
 
 const Editor = () => {
@@ -52,7 +53,12 @@ const Editor = () => {
           <a>Add Field</a>
           <Icon color="secondary">add_circle</Icon>
         </div>
-        <Button variant="contained" color="primary">
+        <Button
+          component={Link}
+          to={'/thankyou'}
+          variant="contained"
+          color="primary"
+        >
           Save Config
         </Button>
       </div>

@@ -1,13 +1,14 @@
 import React from 'react';
 import './PageConfig.css';
 import { TextField, Button, Icon, Typography } from '@material-ui/core';
+import { Link } from 'react-router-dom';
 
 const PageConfig = () => {
   return (
     <div className="main-container">
-      <h1 className="main-header">
+      <div className="main-header">
         <Typography variant="h4">Tell us something about your page</Typography>
-      </h1>
+      </div>
       <div className="config-container">
         <TextField
           id="page-height"
@@ -27,7 +28,13 @@ const PageConfig = () => {
           label="Number of Pages"
           variant="outlined"
         />
-        <Button variant="contained" color="primary" endIcon={<Icon>send</Icon>}>
+        <Button
+          component={Link}
+          to="/configure"
+          variant="contained"
+          color="primary"
+          endIcon={<Icon>send</Icon>}
+        >
           Proceed
         </Button>
       </div>

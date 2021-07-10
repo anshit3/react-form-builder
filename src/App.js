@@ -4,15 +4,26 @@ import Header from './Components/Header/Header';
 import PageConfig from './Components/PageConfig/PageConfig';
 import SubPageConfig from './Components/SubPageConfig/SubPageConfig';
 import ThankYou from './Components/ThankYou/ThankYou';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 const App = () => {
   return (
-    <>
-      <Header />
-      {/* <PageConfig ></PageConfig> */}
-      {/* <SubPageConfig></SubPageConfig> */}
-      <ThankYou></ThankYou>
-    </>
+    <Router>
+      <>
+        <Header />
+        <Switch>
+          <Route exact path="/">
+            <PageConfig />
+          </Route>
+          <Route path="/configure">
+            <SubPageConfig />
+          </Route>
+          <Route path="/thankyou">
+            <ThankYou />
+          </Route>
+        </Switch>
+      </>
+    </Router>
   );
 };
 

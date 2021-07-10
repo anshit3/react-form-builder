@@ -2,7 +2,7 @@ import React from 'react';
 import { Typography, Paper } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles({
   root: {
     '& > *': {
       height: 500,
@@ -12,9 +12,9 @@ const useStyles = makeStyles((theme) => ({
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
-    }
+    },
   },
-}));
+});
 
 const ThankYou = () => {
   const classes = useStyles();
