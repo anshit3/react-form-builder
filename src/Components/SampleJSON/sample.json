@@ -1,0 +1,42 @@
+{
+  "typeOfPage": "modal",
+  "height": "200",
+  "width": "300",
+  "numberOfPages": "2",
+  "multiplePages": true,
+  "pageCollection": [
+    {
+      "pageNumber": "1",
+      "targetPage": null,
+      "styles": {
+        "bgColor": "#000",
+        "textColor": "#000",
+        "bgImage": "(url)"
+      },
+      "pageFilelds": [
+        {
+          "headlineText": "Save your spot",
+          "type": "headline"
+        },
+        {
+          "label": "Name",
+          "placeholderText": "Name",
+          "type": "inputText",
+          "isRequired": true
+        },
+        {
+          "label": "Email",
+          "placeholderText": "Email",
+          "type": "email",
+          "isRequired": true
+        },
+        {
+          "label": "Contact Number",
+          "placeholderText": "Contact Number",
+          "type": "tel",
+          "isRequired": true
+        }
+      ]
+    }
+  ]
+}
