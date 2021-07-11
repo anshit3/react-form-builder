@@ -10,7 +10,7 @@ import EditIcon from '@material-ui/icons/Edit';
 import './Editor.css';
 
 const Editor = (props) => {
-  console.log(props);
+  console.log(props.selectedPage);
   return (
     <div className="preview-outer-ctn">
       <div className="preview-ctn">

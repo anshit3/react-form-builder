@@ -73,7 +73,11 @@ const SubPageConfig = () => {
                   <FileCopyIcon />
                 </ListItemIcon>
                 <ListItemText primary={`Page - ${page.pageNumber + 1}`} />
-                <ArrowRightAltIcon />
+                {selectedPage && selectedPage.pageNumber === page.pageNumber ? (
+                  <ArrowRightAltIcon />
+                ) : (
+                  <></>
+                )}
               </ListItem>
             ))}
           </List>
