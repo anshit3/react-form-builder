@@ -9,6 +9,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import FileCopyIcon from '@material-ui/icons/FileCopy';
 import Paper from '@material-ui/core/Paper';
 import ArrowRightAltIcon from '@material-ui/icons/ArrowRightAlt';
+import { Typography } from '@material-ui/core';
 
 import Editor from './Editor/Editor';
 import './SubPageConfig.css';
@@ -28,6 +29,12 @@ const useStyles = makeStyles((theme) => ({
     width: drawerWidth,
     marginTop: 64,
     padding: 0,
+  },
+  editorEmpty: {
+    display: 'flex',
+    justifyContent: 'center',
+    height: '100%',
+    alignItems: 'center',
   },
 }));
 
@@ -74,7 +81,13 @@ const SubPageConfig = () => {
       </Drawer>
       <div className={classes.root}>
         <Paper elevation={3}>
-          {selectedPage && <Editor selectedPage={selectedPage}></Editor>}
+          {selectedPage ? (
+            <Editor selectedPage={selectedPage}></Editor>
+          ) : (
+            <div className={classes.editorEmpty}>
+              <Typography variant="h5">Please select a page to edit</Typography>
+            </div>
+          )}
         </Paper>
       </div>
     </div>
