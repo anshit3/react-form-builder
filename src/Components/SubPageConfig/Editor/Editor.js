@@ -7,7 +7,8 @@ import EditIcon from '@material-ui/icons/Edit';
 import { Link } from 'react-router-dom';
 import './Editor.css';
 
-const Editor = () => {
+const Editor = (props) => {
+  console.log(props);
   return (
     <div className="preview-outer-ctn">
       <div className="preview-ctn">

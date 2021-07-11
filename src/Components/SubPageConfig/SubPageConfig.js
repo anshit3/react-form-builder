@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import List from '@material-ui/core/List';
@@ -32,6 +32,18 @@ const useStyles = makeStyles((theme) => ({
 const SubPageConfig = () => {
   const classes = useStyles();
 
+  const [selectedPage, setSelectedPage] = useState();
+
+  let pageConfigCollection = JSON.parse(localStorage.getItem('pageConfig'));
+  let pageConfig;
+
+  console.log(pageConfigCollection);
+
+  const passConfigToEditorOnMenuSelect = (page) => {
+    setSelectedPage(page);
+    console.log(pageConfig);
+  };
+
   return (
     <div>
       <Drawer
@@ -42,12 +54,18 @@ const SubPageConfig = () => {
       >
         <div>
           <List>
-            {['Page-1', 'Page-2', 'Page-3'].map((text, index) => (
-              <ListItem button key={text}>
+            {pageConfigCollection.pageCollection.map((page, index) => (
+              <ListItem
+                button
+                key={page.pageNumber}
+                onClick={() => {
+                  passConfigToEditorOnMenuSelect(page);
+                }}
+              >
                 <ListItemIcon>
                   <FileCopyIcon />
                 </ListItemIcon>
-                <ListItemText primary={text} />
+                <ListItemText primary={`Page - ${page.pageNumber + 1}`} />
                 <ArrowRightAltIcon />
               </ListItem>
             ))}
@@ -56,7 +74,7 @@ const SubPageConfig = () => {
       </Drawer>
       <div className={classes.root}>
         <Paper elevation={3}>
-          <Editor></Editor>
+          {selectedPage && <Editor selectedPage={selectedPage}></Editor>}
         </Paper>
       </div>
     </div>

@@ -17,8 +17,7 @@ const PageConfig = () => {
   const [noOfPages, setNoOfPages] = useState('');
   const [open, setOpen] = useState(false);
 
-  let defaultConfig = config;
-  console.log(defaultConfig);
+  let pageConfig = config;
   let disabled = height && width && noOfPages ? true : false;
   let history = useHistory();
 
@@ -26,24 +25,24 @@ const PageConfig = () => {
     if (height >= 200 && width >= 200 && 6 > noOfPages >= 1) {
       disabled = true;
 
-      defaultConfig.width = width;
-      defaultConfig.height = height;
-      defaultConfig.noOfPages = noOfPages;
+      pageConfig.width = width;
+      pageConfig.height = height;
+      pageConfig.noOfPages = noOfPages;
 
       noOfPages > 1
-        ? (defaultConfig.multiplePages = true)
-        : (defaultConfig.multiplePages = false);
+        ? (pageConfig.multiplePages = true)
+        : (pageConfig.multiplePages = false);
 
-      let page = [...defaultConfig.pageCollection];
-      defaultConfig.pageCollection = [];
+      let page = [...pageConfig.pageCollection];
+      pageConfig.pageCollection = [];
 
       for (let i = 0; i < noOfPages; i++) {
         let tempPage = { ...page[0] };
         tempPage.pageNumber = i;
-        defaultConfig.pageCollection.push(tempPage);
+        pageConfig.pageCollection.push(tempPage);
       }
 
-      localStorage.setItem('config', JSON.stringify(defaultConfig));
+      localStorage.setItem('pageConfig', JSON.stringify(pageConfig));
       history.push('/configure');
     } else {
       console.log(height, width, noOfPages);
