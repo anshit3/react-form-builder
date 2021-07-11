@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
-import './PageConfig.css';
-import config from '../DefaultConfig/config';
 import { useHistory } from 'react-router-dom';
+
 import { TextField, Button, Icon, Typography } from '@material-ui/core';
 import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
+
+import config from '../DefaultConfig/config';
+import './PageConfig.css';
 
 function Alert(props) {
   return <MuiAlert elevation={6} variant="filled" {...props} />;

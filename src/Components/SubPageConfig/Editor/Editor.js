@@ -1,10 +1,12 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Icon from '@material-ui/core/Icon';
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 import EditIcon from '@material-ui/icons/Edit';
-import { Link } from 'react-router-dom';
+
 import './Editor.css';
 
 const Editor = (props) => {

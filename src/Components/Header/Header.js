@@ -1,9 +1,11 @@
 import React from 'react';
-import './Header.css';
+import { Link } from 'react-router-dom';
+
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import { Link } from 'react-router-dom';
+
+import './Header.css';
 
 const Header = () => {
   return (

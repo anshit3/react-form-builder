@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+
 import { makeStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import List from '@material-ui/core/List';
@@ -8,6 +9,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import FileCopyIcon from '@material-ui/icons/FileCopy';
 import Paper from '@material-ui/core/Paper';
 import ArrowRightAltIcon from '@material-ui/icons/ArrowRightAlt';
+
 import Editor from './Editor/Editor';
 import './SubPageConfig.css';
 
@@ -35,13 +37,11 @@ const SubPageConfig = () => {
   const [selectedPage, setSelectedPage] = useState();
 
   let pageConfigCollection = JSON.parse(localStorage.getItem('pageConfig'));
-  let pageConfig;
 
   console.log(pageConfigCollection);
 
   const passConfigToEditorOnMenuSelect = (page) => {
     setSelectedPage(page);
-    console.log(pageConfig);
   };
 
   return (
