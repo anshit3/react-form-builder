@@ -1,72 +1,109 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { instanceOf } from 'prop-types';
 
 import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
 import Icon from '@material-ui/core/Icon';
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 import EditIcon from '@material-ui/icons/Edit';
+import ConfigAddEditModal from '../ConfigAddEditModal/ConfigAddEditModal';
+import Dialog from '@material-ui/core/Dialog';
 
 import './Editor.css';
+import { useState } from 'react';
 
 const Editor = (props) => {
-  console.log(props.selectedPage);
+  const { selectedPage } = props;
+
+  const [pageConfig, setPageConfig] = useState(selectedPage);
+  const [open, setOpen] = useState(false);
+  const [operation, setOperation] = useState('cant_edit');
+  const [currentConfig, setCurrentConfig] = useState();
+
+  const handleOpen = (type, index) => {
+    if (type === 'add_new') {
+      setOperation('add');
+    } else {
+      setOperation('edit');
+      setCurrentConfig(pageConfig.pageFields[index]);
+    }
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const handleElementConfig = (config) => {
+    let tempConfig = JSON.parse(JSON.stringify(pageConfig));
+    let localConfig = JSON.parse(localStorage.getItem('pageConfig'));
+    pageConfig.pageFields.forEach((field, index) => {
+      if (field.id === config.id) {
+        tempConfig.pageFields[index].label = config.label;
+        tempConfig.pageFields[index].placeholderText = config.placeholderText;
+      }
+    });
+    setPageConfig(tempConfig);
+    localConfig.pageCollection.forEach((page, index) => {
+      if (page.pageNumber === pageConfig.pageNumber) {
+        localConfig.pageCollection[index] = pageConfig;
+      }
+    });
+    localStorage.setItem('pageConfig', JSON.stringify(localConfig));
+  };
+
+  const setNewConfig = (config, type) => {};
+
   return (
     <div className="preview-outer-ctn">
       <div className="preview-ctn">
-        <div className="fields-ctn">
-          <TextField
-            id="name"
-            label="Name"
-            defaultValue="Name"
-            InputProps={{
-              readOnly: true,
-            }}
-          />
-          <EditIcon />
-          <HighlightOffIcon />
-        </div>
-        <div className="fields-ctn">
-          <TextField
-            id="email"
-            label="E-mail"
-            defaultValue="E-mail"
-            InputProps={{
-              readOnly: true,
-            }}
-          />
-          <EditIcon />
-          <HighlightOffIcon />
-        </div>
-        <div className="fields-ctn">
-          <TextField
-            id="contact"
-            label="Contact Number"
-            defaultValue="Contact Number"
-            InputProps={{
-              readOnly: true,
-            }}
-          />
-          <EditIcon />
-          <HighlightOffIcon />
-        </div>
+        {pageConfig.pageFields.map((uiEle, index) => (
+          <div key={index} className="fields-ctn">
+            <TextField
+              id={uiEle.id}
+              label={uiEle.label}
+              placeholder={uiEle.placeholderText}
+              type={uiEle.type}
+              required={uiEle.isRequired}
+            />
+            {
+              <EditIcon
+                onClick={() => {
+                  handleOpen('edit_current', index);
+                }}
+              />
+            }
+            {!uiEle.default && <HighlightOffIcon className="delete-icon" />}
+          </div>
+        ))}
       </div>
       <div className="btn-ctn">
-        <div className="add-ele-ctn">
+        <div onClick={() => handleOpen('add_new')} className="add-ele-ctn">
           <a>Add Field</a>
           <Icon color="secondary">add_circle</Icon>
         </div>
-        <Button
-          component={Link}
-          to={'/thankyou'}
-          variant="contained"
-          color="primary"
+        <Dialog
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="form-dialog-title"
         >
-          Save & Preview
-        </Button>
+          <ConfigAddEditModal
+            handleClose={handleClose}
+            operation={operation}
+            currentconfig={currentConfig}
+            handleelementconfig={handleElementConfig}
+          />
+        </Dialog>
       </div>
     </div>
   );
 };
 
 export default Editor;
+
+Editor.propTypes = {
+  selectedPage: instanceOf(Object),
+};
+
+Editor.defaultProps = {
+  selectedPage: null,
+};

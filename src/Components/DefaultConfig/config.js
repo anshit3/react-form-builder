@@ -13,8 +13,9 @@ const config = {
         textColor: '',
         bgImage: '',
       },
-      pageFilelds: [
+      pageFields: [
         {
+          id: 'name',
           label: 'Name',
           placeholderText: 'Name',
           type: 'inputText',
@@ -22,6 +23,7 @@ const config = {
           default: true,
         },
         {
+          id: 'email',
           label: 'Email',
           placeholderText: 'Email',
           type: 'email',
@@ -29,6 +31,7 @@ const config = {
           default: true,
         },
         {
+          id: 'contactNumber',
           label: 'Contact Number',
           placeholderText: 'Contact Number',
           type: 'tel',

@@ -10,6 +10,9 @@ import FileCopyIcon from '@material-ui/icons/FileCopy';
 import Paper from '@material-ui/core/Paper';
 import ArrowRightAltIcon from '@material-ui/icons/ArrowRightAlt';
 import { Typography } from '@material-ui/core';
+import Button from '@material-ui/core/Button';
+import { Link } from 'react-router-dom';
+import Divider from '@material-ui/core/Divider';
 
 import Editor from './Editor/Editor';
 import './SubPageConfig.css';
@@ -36,16 +39,17 @@ const useStyles = makeStyles((theme) => ({
     height: '100%',
     alignItems: 'center',
   },
+  submitBtn: {
+    textAlign: 'center',
+    margin: 20,
+  },
 }));
 
 const SubPageConfig = () => {
   const classes = useStyles();
-
   const [selectedPage, setSelectedPage] = useState();
 
   let pageConfigCollection = JSON.parse(localStorage.getItem('pageConfig'));
-
-  console.log(pageConfigCollection);
 
   const passConfigToEditorOnMenuSelect = (page) => {
     setSelectedPage(page);
@@ -80,6 +84,17 @@ const SubPageConfig = () => {
                 )}
               </ListItem>
             ))}
+            <Divider />
+            <div className={classes.submitBtn}>
+              <Button
+                component={Link}
+                to={'/thankyou'}
+                variant="contained"
+                color="primary"
+              >
+                Save
+              </Button>
+            </div>
           </List>
         </div>
       </Drawer>

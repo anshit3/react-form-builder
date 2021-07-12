@@ -50,3 +50,7 @@
 .MuiSvgIcon-root {
   cursor: pointer;
 }
+
+.delete-icon {
+  fill: red!important;
+}
