@@ -42,8 +42,6 @@ const ConfigAddEditModal = (props) => {
     currentconfig.type ? currentconfig.type : 'email'
   );
 
-  console.log(currentconfig, operation);
-
   const handleElementConfigSave = () => {
     if (operation === 'edit') {
       currentconfig.label = label;
@@ -51,12 +49,10 @@ const ConfigAddEditModal = (props) => {
       handleelementconfig(currentconfig, operation);
       handleClose();
     } else {
-      console.log(currentconfig);
       currentconfig.label = label;
       currentconfig.placeholderText = placeholderText;
       currentconfig.id = label + Math.random();
       currentconfig.type = type;
-      console.log(currentconfig);
       handleelementconfig(currentconfig, operation);
       handleClose();
     }

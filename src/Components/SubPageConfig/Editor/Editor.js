@@ -58,12 +58,13 @@ const Editor = (props) => {
         }
       });
       setPageConfig(tempConfig);
-
-      findAndInsertPage(pageConfig);
+      findAndInsertPage(tempConfig);
     } else {
-      tempConfig.pageFields.push(config);
+      tempConfig.pageFields = [...tempConfig.pageFields, config];
       setPageConfig(tempConfig);
-      findAndInsertPage(pageConfig);
+      console.log(tempConfig);
+      console.log(pageConfig);
+      findAndInsertPage(tempConfig);
     }
   };
 
