@@ -7,9 +7,22 @@ import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 import EditIcon from '@material-ui/icons/Edit';
 import ConfigAddEditModal from '../ConfigAddEditModal/ConfigAddEditModal';
 import Dialog from '@material-ui/core/Dialog';
+import elementConfig from '../../DefaultConfig/elementConfig';
 
 import './Editor.css';
 import { useState } from 'react';
+
+const findAndInsertPage = (pageConfig) => {
+  let localConfig = JSON.parse(localStorage.getItem('pageConfig'));
+
+  localConfig.pageCollection.forEach((page, index) => {
+    if (page.pageNumber === pageConfig.pageNumber) {
+      localConfig.pageCollection[index] = pageConfig;
+    }
+  });
+
+  localStorage.setItem('pageConfig', JSON.stringify(localConfig));
+};
 
 const Editor = (props) => {
   const { selectedPage } = props;
@@ -22,6 +35,7 @@ const Editor = (props) => {
   const handleOpen = (type, index) => {
     if (type === 'add_new') {
       setOperation('add');
+      setCurrentConfig(elementConfig);
     } else {
       setOperation('edit');
       setCurrentConfig(pageConfig.pageFields[index]);
@@ -33,25 +47,25 @@ const Editor = (props) => {
     setOpen(false);
   };
 
-  const handleElementConfig = (config) => {
+  const handleElementConfig = (config, operation) => {
     let tempConfig = JSON.parse(JSON.stringify(pageConfig));
-    let localConfig = JSON.parse(localStorage.getItem('pageConfig'));
-    pageConfig.pageFields.forEach((field, index) => {
-      if (field.id === config.id) {
-        tempConfig.pageFields[index].label = config.label;
-        tempConfig.pageFields[index].placeholderText = config.placeholderText;
-      }
-    });
-    setPageConfig(tempConfig);
-    localConfig.pageCollection.forEach((page, index) => {
-      if (page.pageNumber === pageConfig.pageNumber) {
-        localConfig.pageCollection[index] = pageConfig;
-      }
-    });
-    localStorage.setItem('pageConfig', JSON.stringify(localConfig));
-  };
 
-  const setNewConfig = (config, type) => {};
+    if (operation === 'edit') {
+      pageConfig.pageFields.forEach((field, index) => {
+        if (field.id === config.id) {
+          tempConfig.pageFields[index].label = config.label;
+          tempConfig.pageFields[index].placeholderText = config.placeholderText;
+        }
+      });
+      setPageConfig(tempConfig);
+
+      findAndInsertPage(pageConfig);
+    } else {
+      tempConfig.pageFields.push(config);
+      setPageConfig(tempConfig);
+      findAndInsertPage(pageConfig);
+    }
+  };
 
   return (
     <div className="preview-outer-ctn">
