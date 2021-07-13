@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { instanceOf } from 'prop-types';
 
 import TextField from '@material-ui/core/TextField';
@@ -10,7 +10,6 @@ import Dialog from '@material-ui/core/Dialog';
 import elementConfig from '../../DefaultConfig/elementConfig';
 
 import './Editor.css';
-import { useState } from 'react';
 
 const findAndInsertPage = (pageConfig) => {
   let localConfig = JSON.parse(localStorage.getItem('pageConfig'));
@@ -31,6 +30,18 @@ const Editor = (props) => {
   const [open, setOpen] = useState(false);
   const [operation, setOperation] = useState('cant_edit');
   const [currentConfig, setCurrentConfig] = useState();
+
+  useEffect(() => {
+    setOriginalPageConfig();
+  }, [selectedPage]);
+
+  useEffect(() => {
+    setPageConfig(pageConfig);
+  }, [pageConfig]);
+
+  const setOriginalPageConfig = () => {
+    setPageConfig(selectedPage);
+  };
 
   const handleOpen = (type, index) => {
     if (type === 'add_new') {
@@ -59,13 +70,20 @@ const Editor = (props) => {
       });
       setPageConfig(tempConfig);
       findAndInsertPage(tempConfig);
+      console.log(pageConfig);
     } else {
       tempConfig.pageFields = [...tempConfig.pageFields, config];
       setPageConfig(tempConfig);
-      console.log(tempConfig);
-      console.log(pageConfig);
       findAndInsertPage(tempConfig);
+      console.log(pageConfig);
     }
+  };
+
+  const handleDeleteElement = (index) => {
+    let tempConfig = JSON.parse(JSON.stringify(pageConfig));
+    tempConfig.pageFields.splice(index, 1);
+    setPageConfig(tempConfig);
+    findAndInsertPage(tempConfig);
   };
 
   return (
@@ -87,7 +105,14 @@ const Editor = (props) => {
                 }}
               />
             }
-            {!uiEle.default && <HighlightOffIcon className="delete-icon" />}
+            {!uiEle.default && (
+              <HighlightOffIcon
+                onClick={() => {
+                  handleDeleteElement(index);
+                }}
+                className="delete-icon"
+              />
+            )}
           </div>
         ))}
       </div>
