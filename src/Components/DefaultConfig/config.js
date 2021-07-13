@@ -2,7 +2,7 @@ const config = {
   typeOfPage: 'modal',
   height: '',
   width: '',
-  numberOfPages: '',
+  noOfPages: '',
   multiplePages: '',
   pageCollection: [
     {
