@@ -1,29 +1,3 @@
-.main-container {
-  width: 50%;
-  height: 450px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: auto;
-  margin-top: 16px;
-  margin-bottom: 16px;
-  padding: 10px;
-  border-radius: 39px;
-  border: #e2e2e2 1px solid;
-}
-
-.main-header {
-  margin-top: 18px;
-}
-
-.config-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-evenly;
-  height: 100%;
-}
-
 .MuiButton-containedPrimary {
   background-color: #3f51b5 !important;
   width: 50%;

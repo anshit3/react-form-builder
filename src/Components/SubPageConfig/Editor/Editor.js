@@ -8,8 +8,56 @@ import EditIcon from '@material-ui/icons/Edit';
 import ConfigAddEditModal from '../ConfigAddEditModal/ConfigAddEditModal';
 import Dialog from '@material-ui/core/Dialog';
 import elementConfig from '../../DefaultConfig/elementConfig';
+import { makeStyles } from '@material-ui/core/styles';
 
 import './Editor.css';
+
+const useStyles = makeStyles(() => ({
+  preview_outer_ctn: {
+    height: '100%',
+    width: '100%',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
+  preview_ctn: {
+    display: 'flex',
+    flexDirection: 'column',
+    margin: 'auto',
+    height: '100%',
+    width: '50%',
+    alignItems: 'center',
+    overflow: 'auto',
+    marginBottom: '20px',
+    marginTop: '20px',
+    borderRadius: '5px',
+    border: '#e2e2e2 1px solid',
+    paddingTop: '10px',
+  },
+  btn_ctn: {
+    margin: '10px 0px',
+    width: '300px',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
+  add_ele_ctn: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    margin: '10px 10px',
+    cursor: 'pointer',
+  },
+  fields_ctn: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    width: '280px',
+  },
+  delete_icon: {
+    fill: 'red !important',
+  },
+}));
 
 const findAndInsertPage = (pageConfig) => {
   let localConfig = JSON.parse(localStorage.getItem('pageConfig'));
@@ -26,6 +74,7 @@ const findAndInsertPage = (pageConfig) => {
 const Editor = (props) => {
   const { selectedPage } = props;
 
+  const classes = useStyles();
   const [pageConfig, setPageConfig] = useState(selectedPage);
   const [open, setOpen] = useState(false);
   const [operation, setOperation] = useState('cant_edit');
@@ -87,10 +136,10 @@ const Editor = (props) => {
   };
 
   return (
-    <div className="preview-outer-ctn">
-      <div className="preview-ctn">
+    <div className={classes.preview_outer_ctn}>
+      <div className={classes.preview_ctn}>
         {pageConfig.pageFields.map((uiEle, index) => (
-          <div key={index} className="fields-ctn">
+          <div key={index} className={classes.fields_ctn}>
             <TextField
               id={uiEle.id}
               label={uiEle.label}
@@ -110,14 +159,17 @@ const Editor = (props) => {
                 onClick={() => {
                   handleDeleteElement(index);
                 }}
-                className="delete-icon"
+                className={classes.delete_icon}
               />
             )}
           </div>
         ))}
       </div>
-      <div className="btn-ctn">
-        <div onClick={() => handleOpen('add_new')} className="add-ele-ctn">
+      <div className={classes.btn_ctn}>
+        <div
+          onClick={() => handleOpen('add_new')}
+          className={classes.add_ele_ctn}
+        >
           <a>Add Field</a>
           <Icon color="secondary">add_circle</Icon>
         </div>

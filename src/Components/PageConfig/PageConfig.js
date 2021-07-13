@@ -4,6 +4,7 @@ import { useHistory } from 'react-router-dom';
 import { TextField, Button, Icon, Typography } from '@material-ui/core';
 import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
+import { makeStyles } from '@material-ui/styles';
 
 import config from '../DefaultConfig/config';
 import './PageConfig.css';
@@ -12,8 +13,38 @@ function Alert(props) {
   return <MuiAlert elevation={6} variant="filled" {...props} />;
 }
 
+const useStyles = makeStyles(() => ({
+  main_container: {
+    width: '50%',
+    height: '450px',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: "center",
+    margin: 'auto',
+    marginTop: '16px',
+    marginBottom: '16px',
+    padding: '10px',
+    borderRadius: '39px',
+    border: '#e2e2e2 1px solid',
+  },
+
+  main_header: {
+    marginTop: '18px',
+  },
+
+  config_container: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'space-evenly',
+    height: '100%',
+  },
+}));
+
 const PageConfig = () => {
   localStorage.clear();
+
+  const classes = useStyles();
   const [height, setHeight] = useState('');
   const [width, setWidth] = useState('');
   const [noOfPages, setNoOfPages] = useState('');
@@ -65,11 +96,11 @@ const PageConfig = () => {
   };
 
   return (
-    <div className="main-container">
-      <div className="main-header">
+    <div className={classes.main_container}>
+      <div className={classes.main_header}>
         <Typography variant="h5">Tell us something about your page</Typography>
       </div>
-      <div className="config-container">
+      <div className={classes.config_container}>
         <TextField
           id="page-height"
           required
