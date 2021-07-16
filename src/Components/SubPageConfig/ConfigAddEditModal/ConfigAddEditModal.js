@@ -42,6 +42,8 @@ const ConfigAddEditModal = (props) => {
     currentconfig.type ? currentconfig.type : 'email'
   );
 
+  let disabled = label && placeholderText && type ? true : false;
+
   const handleElementConfigSave = () => {
     if (operation === 'edit') {
       currentconfig.label = label;
@@ -134,7 +136,11 @@ const ConfigAddEditModal = (props) => {
         <Button onClick={handleClose} color="primary">
           Cancel
         </Button>
-        <Button onClick={handleElementConfigSave} color="primary">
+        <Button
+          onClick={handleElementConfigSave}
+          color="primary"
+          disabled={!disabled}
+        >
           Save
         </Button>
       </DialogActions>
