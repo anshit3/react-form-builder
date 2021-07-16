@@ -15,7 +15,6 @@ import { Link } from 'react-router-dom';
 import Divider from '@material-ui/core/Divider';
 
 import Editor from './Editor/Editor';
-import './SubPageConfig.css';
 
 const drawerWidth = 200;
 
