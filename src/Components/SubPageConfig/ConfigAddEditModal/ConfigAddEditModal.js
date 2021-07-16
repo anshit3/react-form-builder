@@ -78,6 +78,7 @@ const ConfigAddEditModal = (props) => {
               onChange={(e) => {
                 setLabel(e.target.value);
               }}
+              helperText="Label should be descriptive"
             />
             <TextField
               margin="dense"
@@ -88,6 +89,7 @@ const ConfigAddEditModal = (props) => {
               onChange={(e) => {
                 setPlaceholderText(e.target.value);
               }}
+              helperText="Placeholder should be descriptive"
             />
           </div>
         ) : (

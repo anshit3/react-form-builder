@@ -49,7 +49,7 @@ const SubPageConfig = () => {
   const classes = useStyles();
   const [selectedPage, setSelectedPage] = useState();
 
-  let pageConfigCollection = JSON.parse(localStorage.getItem('pageConfig'));
+  const pageConfigCollection = JSON.parse(localStorage.getItem('pageConfig'));
 
   const passConfigToEditorOnMenuSelect = (page) => {
     setSelectedPage(page);
