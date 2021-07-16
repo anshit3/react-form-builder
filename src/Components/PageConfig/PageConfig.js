@@ -7,7 +7,6 @@ import MuiAlert from '@material-ui/lab/Alert';
 import { makeStyles } from '@material-ui/styles';
 
 import config from '../DefaultConfig/config';
-import './PageConfig.css';
 
 function Alert(props) {
   return <MuiAlert elevation={6} variant="filled" {...props} />;
@@ -19,7 +18,7 @@ const useStyles = makeStyles(() => ({
     height: '450px',
     display: 'flex',
     flexDirection: 'column',
-    alignItems: "center",
+    alignItems: 'center',
     margin: 'auto',
     marginTop: '16px',
     marginBottom: '16px',
